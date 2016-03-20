@@ -19,9 +19,11 @@ CoffeeCup.Models = {
 	"models/props/cs_office/coffee_mug3.mdl"
 }
 
+CreateConVar("cc_minplayers", "2")
+
 if SERVER then
 function CoffeeCup.CheckRequirements()
-	
+	if #player.GetAll() < GetConVar("cc_minplayers") then end
 	if CoffeeCup.ReplacementTypes and #CoffeeCup.ReplacementTypes > 0 then
 		CoffeeCup.EntityType = table.Random(CoffeeCup.ReplacementTypes)
 		CoffeeCup.PropToReplace = table.Random(ents.FindByClass(CoffeeCup.EntityType))
